@@ -3,19 +3,24 @@
 ## Workflow to create keypair , keystore , trust store 
 
 1. Create a KeyStore , key pair .
+
 keytool -genkeypair -alias mykey -keyalg RSA -keysize 2048 -validity 365 -keystore keystore.jks
 
 2. Export the Public Certificate from keystore . 
+
 keytool -export -alias mykey -file mycert.cer -keystore keystore.jks
 
 3. Create a TrustStore and Import the Certificate.
+
 keytool -import -trustcacerts -alias myserver -file mycert.cer -keystore truststore.jks
 
 4.view  
+
 keytool -list -keystore keystore.jks
 
 
 5. convert to pcks12 (optional)
+
 keytool -importkeystore -srckeystore keystore.jks -destkeystore keystore.p12 -deststoretype PKCS12
 
 
